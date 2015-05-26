@@ -13,8 +13,8 @@ import javax.persistence.Persistence;
  * Created by jeansmits on 26/05/15.
  */
 public class SuperTest {
-    private static EntityManager entityManager;
-    private static EntityManagerFactory entityManagerFactory;
+    protected static EntityManager entityManager;
+    protected static EntityManagerFactory entityManagerFactory;
     protected Logger logger = LoggerFactory.getLogger(Tester.class);
 
     @BeforeClass

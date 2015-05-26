@@ -1,4 +1,4 @@
-package be.vdab;
+package be.vdab.ex1;
 
 import javax.persistence.EntityManager;
 import java.util.List;

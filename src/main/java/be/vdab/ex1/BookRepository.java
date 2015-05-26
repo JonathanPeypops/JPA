@@ -1,4 +1,4 @@
-package be.vdab;
+package be.vdab.ex1;
 
 import java.util.List;
 
