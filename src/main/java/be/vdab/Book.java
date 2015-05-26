@@ -1,6 +1,6 @@
 package be.vdab;
 
-import org.hibernate.annotations.Entity;
+import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,11 +48,6 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public Book(String isbn, String title, String author) {
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-
-
+    public Book() {
     }
 }

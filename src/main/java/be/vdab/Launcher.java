@@ -11,6 +11,7 @@ public class Launcher {
         EntityManager entityManager =
                 entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
+
         entityManager.getTransaction().commit();
 
         entityManager.close();
