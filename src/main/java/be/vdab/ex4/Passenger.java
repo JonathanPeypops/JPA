@@ -5,29 +5,19 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Passengers")
-@SecondaryTables(value = {
-        @SecondaryTable(name = "FFM"),
-        @SecondaryTable(name = "Picture")
-})
-
 public class Passenger {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private int FFM;
-
-    @Column(name = "Picture")
     private byte[] picture;
 
-    @Column(name = "first", nullable = false)
     private String firstname;
 
-    @Column(name = "last", nullable = false)
     private String lastname;
 
-    @Column(name = "DOB",nullable = false)
+    @Temporal(TemporalType.DATE)
+    @Access(AccessType.PROPERTY)
     private Date DOB;
 
     private int age;
@@ -35,23 +25,23 @@ public class Passenger {
     @Enumerated(EnumType.STRING)
     private PassengerType type;
 
-    public Passenger() {
+    public Passenger(String firstname, String lastname, PassengerType type) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.type = type;
+
     }
 
-    public int getId() {
+    public Passenger() {
+
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public int getFFM() {
-        return FFM;
-    }
-
-    public void setFFM(int FFM) {
-        this.FFM = FFM;
     }
 
     public byte[] getPicture() {
