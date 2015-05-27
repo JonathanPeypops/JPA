@@ -44,6 +44,8 @@ public class Tester extends SuperTest {
     @Test
     public void actorSave() {
         Actor clark = new Actor ("Kal","El",Gender.MALE);
+        entityManager.persist(clark);
+        assertNotNull(clark.getId());
 
     }
 }
