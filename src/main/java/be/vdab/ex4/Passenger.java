@@ -2,6 +2,7 @@ package be.vdab.ex4;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -25,10 +26,11 @@ public class Passenger {
     @Enumerated(EnumType.STRING)
     private PassengerType type;
 
-    public Passenger(String firstname, String lastname, PassengerType type) {
+    public Passenger(String firstname, String lastname, PassengerType type,Date DOB) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.type = type;
+        setDOB(DOB);
 
     }
 
@@ -74,6 +76,7 @@ public class Passenger {
 
     public void setDOB(Date DOB) {
         this.DOB = DOB;
+        assignAge(DOB);
     }
 
     public int getAge() {
@@ -90,5 +93,11 @@ public class Passenger {
 
     public void setType(PassengerType type) {
         this.type = type;
+    }
+
+    private void assignAge(Date dateOfBirth) {
+        Calendar dob = Calendar.getInstance();
+        dob.setTime(dateOfBirth);
+        this.age = Calendar.getInstance().get(Calendar.YEAR) - dob.get(Calendar.YEAR);
     }
 }

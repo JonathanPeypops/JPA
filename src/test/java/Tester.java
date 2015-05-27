@@ -1,12 +1,15 @@
 import be.vdab.ex1.Book;
 import be.vdab.ex4.Passenger;
 import be.vdab.ex4.PassengerType;
+import be.vdab.extra_ex.Actor;
+import be.vdab.extra_ex.Gender;
 import org.junit.*;
 
 import java.util.Date;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 
 public class Tester extends SuperTest {
 
@@ -24,10 +27,23 @@ public class Tester extends SuperTest {
 
     @Test
     public void passengerTest() {
-        Passenger p = new Passenger("Jonathan","Peypops", PassengerType.AWESOME);
+        Passenger p = new Passenger("Jonathan","Peypops", PassengerType.AWESOME,null);
         entityManager.persist(p);
+        assertNotNull(p.getId());
         assertEquals(p.getFirstname(),"Jonathan");
-        assertEquals(p.getId(),1);
+        assertEquals(p.getLastname(),"Peypops");
+        assertEquals(p.getType(),PassengerType.AWESOME);
+    }
+
+    @Test
+    public void actorFullNameTest() {
+        Actor bruce = new Actor("Bruce","Wayne", Gender.MALE);
+        assertEquals("Bruce Wayne", bruce.fullName());
+    }
+
+    @Test
+    public void actorSave() {
+        Actor clark = new Actor ("Kal","El",Gender.MALE);
+
     }
 }
-
