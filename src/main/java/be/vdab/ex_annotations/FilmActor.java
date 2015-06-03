@@ -2,18 +2,23 @@ package be.vdab.ex_annotations;
 
 import org.hibernate.annotations.ManyToAny;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.List;
-
-public class Actor {
+@Entity
+public class FilmActor {
+    @Id
+    @GeneratedValue
     private int id;
     private String firstname;
     private String lastname;
-    @ManyToMany
-    private List<Film> films;
+    @ManyToMany(mappedBy = "actors")
+    private List<Film> films= new ArrayList<>();
 
-    public Actor(int id, String firstname, String lastname) {
-        this.id = id;
+    public FilmActor(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
@@ -45,7 +50,13 @@ public class Actor {
     public List<Film> getFilms() {
         return films;
     }
-    public Actor(){
+    public FilmActor(){
+
+    }
+
+    public void addFilm(Film film){
+        films.add(film);
+        film.getActors().add(this);
 
     }
 }

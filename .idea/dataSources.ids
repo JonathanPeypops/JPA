@@ -7,11 +7,78 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="realdolmen"/>
+    <table name="Actor" schema="" catalog="realdolmen" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gender" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="Book" schema="" catalog="realdolmen" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="author" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="isbn" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Director" schema="" catalog="realdolmen" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_guthvstdxy6imfb9v14uap6sm" table="Director_Film" schema="" catalog="realdolmen" columns="Director_id"/>
+      <exported-key name="FK_modsegbb3v6grvkpxnp1umu15" table="Film" schema="" catalog="realdolmen" columns="director_id"/>
+    </table>
+    <table name="Director_Film" schema="" catalog="realdolmen" type="TABLE">
+      <column name="Director_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="films_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="FK_9q8p17ayxy8sucevigu00athh" columns="films_id" ref-table="Film" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_guthvstdxy6imfb9v14uap6sm" columns="Director_id" ref-table="Director" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_9q8p17ayxy8sucevigu00athh" unique="true" columns="films_id"/>
+      <index name="FK_guthvstdxy6imfb9v14uap6sm" unique="false" columns="Director_id"/>
+    </table>
+    <table name="Film" schema="" catalog="realdolmen" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="director_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_modsegbb3v6grvkpxnp1umu15" columns="director_id" ref-table="Director" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_9q8p17ayxy8sucevigu00athh" table="Director_Film" schema="" catalog="realdolmen" columns="films_id"/>
+      <exported-key name="FK_316vk42rcx947eedsygw6i279" table="FilmActor_Film" schema="" catalog="realdolmen" columns="films_id"/>
+      <exported-key name="FK_86jcra6b7wdjksevnxym19d4s" table="Film_FilmActor" schema="" catalog="realdolmen" columns="Film_id"/>
+      <index name="FK_modsegbb3v6grvkpxnp1umu15" unique="false" columns="director_id"/>
+    </table>
+    <table name="FilmActor" schema="" catalog="realdolmen" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_m2xmdylhfu8aj3ogbnw0gfsps" table="FilmActor_Film" schema="" catalog="realdolmen" columns="FilmActor_id"/>
+      <exported-key name="FK_o3fitmy9ccsaq7xwsp6m3l66l" table="Film_FilmActor" schema="" catalog="realdolmen" columns="actors_id"/>
+    </table>
+    <table name="FilmActor_Film" schema="" catalog="realdolmen" type="TABLE">
+      <column name="FilmActor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="films_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="FK_316vk42rcx947eedsygw6i279" columns="films_id" ref-table="Film" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_m2xmdylhfu8aj3ogbnw0gfsps" columns="FilmActor_id" ref-table="FilmActor" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_316vk42rcx947eedsygw6i279" unique="false" columns="films_id"/>
+      <index name="FK_m2xmdylhfu8aj3ogbnw0gfsps" unique="false" columns="FilmActor_id"/>
+    </table>
+    <table name="Film_FilmActor" schema="" catalog="realdolmen" type="TABLE">
+      <column name="Film_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="actors_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="FK_86jcra6b7wdjksevnxym19d4s" columns="Film_id" ref-table="Film" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_o3fitmy9ccsaq7xwsp6m3l66l" columns="actors_id" ref-table="FilmActor" ref-schema="" ref-catalog="realdolmen" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_86jcra6b7wdjksevnxym19d4s" unique="false" columns="Film_id"/>
+      <index name="FK_o3fitmy9ccsaq7xwsp6m3l66l" unique="false" columns="actors_id"/>
+    </table>
+    <table name="Passenger" schema="" catalog="realdolmen" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="DOB" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="firstname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="lastname" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="picture" sqlType="TINYBLOB" precision="255" scale="0" nullable="true" jdbcType="-2"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>

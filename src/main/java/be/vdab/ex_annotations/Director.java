@@ -1,17 +1,20 @@
 package be.vdab.ex_annotations;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
-
+@Entity
 public class Director {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     @OneToMany
     private List<Film> films;
 
-    public Director(int id, String name) {
-        this.id = id;
+    public Director(String name) {
         this.name = name;
     }
 

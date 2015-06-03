@@ -3,3 +3,9 @@ INSERT INTO book (title, author, isbn) VALUES ('Alice Adventures In Wonderland',
 INSERT INTO book (title, author, isbn) VALUES ('Batman', 'Bruce Wayne', '0000000003');
 INSERT INTO book (title, author, isbn) VALUES ('Superman', 'Kal-El', '0000000004');
 INSERT INTO book (title, author, isbn) VALUES ('Iron Man', 'Tony Stark', '0000000005');
+insert into film (title) values ('The Hobbit');
+insert into film (title) values ('Eragon');
+insert into film (title) values ('Harry Potter');
+insert into FilmActor (id, firstname, lastname) values (1, 'The','Gandalf');
+insert into FilmActor (id, firstname, lastname) values (2, 'The','dude with a dragon');
+insert into FilmActor (id, firstname, lastname) values (3, 'Emma','Watson');
