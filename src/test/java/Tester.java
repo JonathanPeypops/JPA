@@ -5,7 +5,6 @@ import be.vdab.extra_ex.Actor;
 import be.vdab.extra_ex.Gender;
 import org.junit.*;
 
-import java.util.Date;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;

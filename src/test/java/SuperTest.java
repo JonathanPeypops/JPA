@@ -9,9 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- * Created by jeansmits on 26/05/15.
- */
 public class SuperTest {
     protected static EntityManager entityManager;
     protected static EntityManagerFactory entityManagerFactory;
